@@ -1,0 +1,21 @@
+{% extends 'basic.html' %}
+{% block title %}Create a Blog{% endblock %}
+{% block content %}
+
+    <h1>Ask a Question</h1>
+
+    {% if errorms == 1 %}
+        <p class="error">Missing Title or Content!</p>
+    {% elif errorms == 2 %}
+        <p class="error">Title already existed</p>
+    {% endif %}
+
+    <form action="/addquestion" method="POST">
+        <h2>Title: <input name="title" type="text" width="40"></h2>
+        <h2><textarea name="content" rows="8", cols="40"></textarea></h2>
+        <h2>Tag: <input name="tags" type="text"width="30"></h2>
+        <input type="hidden" name="_csrf_token" value="{{ _csrf_token }}">
+        <button type="submit" class="pure-button pure-button-primary">Create</button>
+    </form>
+
+{% endblock %}

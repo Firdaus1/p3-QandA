@@ -1,0 +1,46 @@
+{% extends 'basic.html' %}
+{% block title %}{{ question.title }}{% endblock %}
+{% block content %}
+
+    <br><a href="/" ><button class="pure-button pure-button-secondary">Home Page</button></a><br>
+    <div id="blogpage" class="question-index">
+        <article>
+            <h1>Title: {{ question.title }}</h1>
+            <h2>{{ question.content }}</h2>
+            <h5>Tags: {% for tag in question.tags %}
+            <a href="/tags/{{ tag.tag }}">{{ tag.tag }}</a>
+            {%- endfor %}</h5>
+
+            <div class="page-position2">Created by {{ question.author.name }} on
+                <font style="font-family: italic">{{ question.time }}</font></div>
+        </article>
+    </div>
+
+    <br><div style="border-bottom: 10px solid gray"></div>
+    <h1>Answers:</h1>
+    {% if answers %}
+        <div class="answer-index">
+        {% for item in answers | reverse %}
+            {{ item.answer.total_up_vote - item.answer.total_down_vote }} Votes
+            <font class = "answer content" data-answer-id="{{ item.answer.id }}">
+                {% if session.auth_user %}
+                    <span class="widget upvote" data-state="{{ "checked" if item.upvote else "unchecked" }}"></span>
+                    <span class="widget downvote" data-state="{{ "checked" if item.downvote else "unchecked" }}"></span>
+                {% endif %}</font><div>
+                {{ item.answer.content }}
+            <p class="page-position3">Created by {{ item.answer.author.name }} on
+                    <font style="font-family: italic">{{ item.answer.time }}</font></p>
+            </div>
+        {% endfor %}
+        </div>
+
+    {% endif %}
+    <h1>Your answer:</h1>
+    <form action="/addanswer" method="POST">
+        <h2><textarea name="content" rows="8", cols="40", style="border-color: gray"></textarea></h2>
+        <input type="hidden" name="question_id" value="{{ question.id }}">
+        <input type="hidden" name="_csrf_token" value="{{ _csrf_token }}">
+        <button type="submit" class="pure-button pure-button-primary">Post Your Answer</button>
+    </form>
+  <script type="application/javascript" src="{{ url_for('static', filename='stars.js') }}"></script>
+{% endblock %}

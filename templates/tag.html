@@ -1,0 +1,18 @@
+{% extends 'basic.html' %}
+{% block title %}{{ tag }}{% endblock %}
+{% block content %}
+
+    <br><a href="/" ><button class="pure-button pure-button-secondary">Home Page</button></a><br>
+    <div id="tagpage" class="question-index">
+    <h1>{{ tag }}</h1>
+    <br><br>
+    <div class="page-position">
+        {% for question in questions | reverse %}
+        <li><h1><a href="/question/{{ question.id }}"> {{ question.title }}</a>
+            <font style="font-family: italic" size="3">{{ question.author.name }}.
+                {{ question.time }}.  <font style="background-color: lightgray" >
+                    {{ question.n_answer }}</font> Answers</font></h1></li>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}

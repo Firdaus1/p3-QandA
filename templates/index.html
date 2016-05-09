@@ -1,0 +1,34 @@
+{% extends 'basic.html' %}
+{% block title %}Log In{% endblock %}
+{% block content %}
+
+    <br><a href="/askquestion"><button class="pure-button pure-button-primary">Ask a Question</button></a><br>
+    <h1>Recent Posts</h1>
+
+    {% if questions %}
+        <div class="page-position">
+            {% for question in questions | reverse %}
+                {% if loop.index > pageindex * 25 and loop.index < pageindex * 25 + 26%}
+                    <li><h1><a href="/question/{{ question.id }}"> {{ question.title }}</a>
+                    <font style="font-family: italic" size="3">asked by {{ question.author.name }}.
+                        {{ question.time }}.  <font style="background-color: lightgray" >
+                            {{ question.n_answer }}</font> Answers. Tags:
+                        {% for tag in question.tags %}
+                            <a href="/tags/{{ tag.tag }}">{{ tag.tag }}</a>
+                        {%- endfor %}</font></h1></li>
+
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if pageindex != 0 %}
+            <a href="/{{ pageindex - 1 }}"><button class="pure-button pure-button-secondary">
+                Previous Page</button></a>
+        {% endif %}
+
+        {% if pageindex * 25 + 25 < pages %}
+            <a href="/{{ pageindex + 1 }}"><button class="pure-button pure-button-secondary">
+                Next Page</button></a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,116 @@
+html
+{
+    font-family: "Open Sans", Sans-Serif;
+    font-size: 13pt;
+    background-image: url("background2.png");
+}
+h1
+{
+    font-size: 1.3rem;
+}
+h2
+{
+    font-size: 1.1rem;
+}
+.error
+{
+    color: #FF000F;
+}
+.pure-button-primary
+{
+    background-color: cornflowerblue;
+}
+.pure-button-secondary
+{
+    background-color: darkgray;
+}
+.content{
+    padding: 0 40px 0 40px;
+}
+.main {
+    padding: 0px 0px 0px 0px;
+}
+
+.sidebar {
+    height: 960px;
+    box-sizing: border-box;
+    padding-left: 1ex;
+    background-image: url("background1.jpg")
+
+}
+
+.sidebar div{
+    margin-left: 1.0em;
+}
+
+.question-index article h1 {
+    font-size: 1.1rem;
+}
+.question-index article h2 {
+    font-size: 0.9rem;
+}
+.answer-index div{
+    margin: 0px 0px 10px 0px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
+}
+
+.page-position {
+    height: 200px;
+}
+.page-position2 {
+    font-style:italic;
+    margin: 45px 0 0 700px;
+}
+.page-position3 {
+    font-style:italic;
+    margin: 10px 0 0 700px;
+}
+
+
+.upvote {
+    font-family: FontAwesome;
+    /* a star is a block that flows inline with text */
+    display: inline-block;
+    /* stars have link-style pointers */
+    cursor: pointer;
+}
+
+.downvote {
+    font-family: FontAwesome;
+    /* a star is a block that flows inline with text */
+    display: inline-block;
+    /* stars have link-style pointers */
+    cursor: pointer;
+}
+
+
+@keyframes our-spin {
+    0% {
+        transform: rotate(0deg);
+        color: #000000;
+    }
+    100% {
+        transform: rotate(359deg);
+        color: black;
+    }
+}
+
+.upvote[data-state="checked"]::after{
+    content:"\f164";
+    color:green;
+}
+
+.upvote[data-state="unchecked"]::after{
+    content:"\f164";
+}
+
+.downvote[data-state="checked"]::after{
+    content:"\f165";
+    color:red;
+}
+
+.downvote[data-state="unchecked"]::after{
+    content:"\f165";
+}

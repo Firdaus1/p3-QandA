@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Title Me{% endblock %}</title>
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css"
+          media="screen and (min-width: 48em)">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/voting.js"></script>
+    <script type ="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>var csrfToken = '{{ session.csrf_token }}';</script>
+</head>
+<body>
+<div id="shell" class="pure-g">
+<div id="control-sidebar" class="sidebar pure-u-1 pure-u-xl-1-5">
+
+<div>
+    <h1>Project 3</h1>
+
+{% if session.auth_user %}
+    <h3>Logged in as </h3>
+    <h2>{{ session.auth_user }}</h2> <a href="/logout?url={{ request.url }}">
+    <button class="pure-button pure-button-primary">Log Out
+    </button></a>
+{% else %}
+    {% if check == 1 %}
+        <p class="error">User is not exist.</p>
+        {{ message }}
+    {% elif check == 2 %}
+        <p class="error">Wrong password.</p>
+    {% endif %}
+
+    <form action="/log" method="POST">
+        <h2>Username: <br><input name="user" type="text" style="width: 150px"></h2>
+        <h2>Password: <br><input name="password" type="password" style="width: 150px"></h2>
+        <input type="hidden" name="url" value={{ request.url }}>
+        <button type="submit" class="pure-button pure-button-primary">Log In</button>
+    </form>
+
+    <br><br><a href="/sign"><button class="pure-button pure-button-primary">Sign up</button></a>
+{% endif %}
+
+</div>
+</div>
+
+<main id="main" class="main pure-u-1 pure-u-xl-3-5">
+<div class="content">
+    {% block content %}
+        Fill me in!
+    {% endblock %}
+</div>
+</main>
+
+<div id="control-sidebar2" class="sidebar pure-u-1 pure-u-xl-1-5">
+    <h1>Group Members</h1><br>
+    <li>Anastasia</li><br>
+    <li>Cletus</li><br>
+    <li>Dayana</li><br>
+    <li>Firdaus</li><br>
+    <li>Jie</li>
+</div>
+</body>
+</html>

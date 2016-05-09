@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css"
+          media="screen and (min-width: 48em)">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div style="margin-left: 500px">
+<h1>Create an Acount</h1>
+<br><br>
+{% if check == 0 %}
+    <p class="error">Username is empty!</p>
+{% elif check == 1 %}
+    <p class="error">Username " {{ username }} " has already existed!</p>
+{% elif check == 2 %}
+    <p class="error">Password and Confirm do not match!</p>
+{% endif %}
+
+ <form action="/createuser" method="POST">
+     <h2>Username: <input name="user" type="text" width="30" style="margin-left: 85px"></h2>
+     <h2>Password: <input name="password" type="password" width="30" style="margin-left: 91px"></h2>
+     <h2>Confirm Password: <input name="confirm" type="password" width="30" style="margin-left: 10px"></h2>
+     <button type="submit" class="pure-button pure-button-primary">Create</button>
+ </form>
+
+<br><br><br><a href="/" ><button class="pure-button pure-button-secondary">
+    Cancel</button></a><br>
+
+</div>
+</body>
+</html>
